@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors */
+    --brand-orange: 249 85 53; /* #F95535 - Lane Orange */
+    --brand-navy: 44 60 74; /* #2C3C4A */
+    --brand-graphite: 63 73 74; /* #3F494A */
+    --brand-granite: 96 97 96; /* #606160 */
+    --brand-steel: 87 113 124; /* #57717C */
+    --brand-cream: 249 247 238; /* #F9F7EE */
+    --brand-ochre: 238 181 34; /* #EEB522 */
+
+    /* Updated Color Scheme using Brand Colors */
+    --background: var(--brand-cream);
+    --foreground: var(--brand-navy);
+    
+    --card: 255 255 255;
+    --card-foreground: var(--brand-navy);
+    
+    --popover: 255 255 255;
+    --popover-foreground: var(--brand-navy);
+    
+    --primary: var(--brand-orange);
+    --primary-foreground: 255 255 255;
+    
+    --secondary: var(--brand-steel);
+    --secondary-foreground: 255 255 255;
+    
+    --muted: var(--brand-granite);
+    --muted-foreground: var(--brand-graphite);
+    
+    --accent: var(--brand-ochre);
+    --accent-foreground: var(--brand-navy);
+    
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    
+    --border: var(--brand-granite);
+    --input: var(--brand-granite);
+    --ring: var(--brand-orange);
+    
+    --radius: 0.5rem;
+    
+    /* Chart Colors using Brand Palette */
+    --chart-1: var(--brand-orange);
+    --chart-2: var(--brand-steel);
+    --chart-3: var(--brand-ochre);
+    --chart-4: var(--brand-graphite);
+    --chart-5: var(--brand-granite);
+  }
+
+  .dark {
+    --background: var(--brand-navy);
+    --foreground: var(--brand-cream);
+    
+    --card: var(--brand-graphite);
+    --card-foreground: var(--brand-cream);
+    
+    --popover: var(--brand-graphite);
+    --popover-foreground: var(--brand-cream);
+    
+    --primary: var(--brand-orange);
+    --primary-foreground: 255 255 255;
+    
+    --secondary: var(--brand-steel);
+    --secondary-foreground: var(--brand-cream);
+    
+    --muted: var(--brand-granite);
+    --muted-foreground: var(--brand-cream);
+    
+    --accent: var(--brand-ochre);
+    --accent-foreground: var(--brand-navy);
+    
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    
+    --border: var(--brand-steel);
+    --input: var(--brand-steel);
+    --ring: var(--brand-orange);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+} 

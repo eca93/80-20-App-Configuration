@@ -134,10 +134,10 @@ export function MetricsChart({
             .tickFormat(d => format(d as Date, 'MMM d'))
             .tickValues(getTickValues())
       )
-      .call(g => g.select('.domain').attr('stroke', '#cbd5e1'))
-      .call(g => g.selectAll('.tick line').attr('stroke', '#cbd5e1'))
+      .call(g => g.select('.domain').attr('stroke', '#606160'))
+      .call(g => g.selectAll('.tick line').attr('stroke', '#606160'))
       .call(g => g.selectAll('.tick text')
-        .attr('fill', '#64748b')
+        .attr('fill', '#3F494A')
         .style('text-anchor', 'end')
         .attr('transform', 'rotate(-45)'))
 
@@ -145,9 +145,9 @@ export function MetricsChart({
       .call(d3.axisLeft(y1Scale)
         .ticks(5)
         .tickFormat(d => formatYAxisTick(d as number, metric1.key)))
-      .call(g => g.select('.domain').attr('stroke', '#cbd5e1'))
-      .call(g => g.selectAll('.tick line').attr('stroke', '#cbd5e1'))
-      .call(g => g.selectAll('.tick text').attr('fill', '#64748b'))
+      .call(g => g.select('.domain').attr('stroke', '#606160'))
+      .call(g => g.selectAll('.tick line').attr('stroke', '#606160'))
+      .call(g => g.selectAll('.tick text').attr('fill', '#3F494A'))
 
     if (metric2 && y2Scale) {
       svg.append('g')
@@ -155,9 +155,9 @@ export function MetricsChart({
         .call(d3.axisRight(y2Scale)
           .ticks(5)
           .tickFormat(d => formatYAxisTick(d as number, metric2.key)))
-        .call(g => g.select('.domain').attr('stroke', '#cbd5e1'))
-        .call(g => g.selectAll('.tick line').attr('stroke', '#cbd5e1'))
-        .call(g => g.selectAll('.tick text').attr('fill', '#64748b'))
+        .call(g => g.select('.domain').attr('stroke', '#606160'))
+        .call(g => g.selectAll('.tick line').attr('stroke', '#606160'))
+        .call(g => g.selectAll('.tick text').attr('fill', '#3F494A'))
     }
 
     if (currentChartType === 'line') {
@@ -238,7 +238,7 @@ export function MetricsChart({
       .attr('x', 25)
       .attr('y', legendSymbol === 'line' ? 4 : 12)
       .text(metric1.label)
-      .attr('fill', '#64748b')
+      .attr('fill', '#2C3C4A')
       .style('font-size', '12px')
 
     if (metric2) {
@@ -263,13 +263,13 @@ export function MetricsChart({
         .attr('x', 25)
         .attr('y', legendSymbol === 'line' ? 4 : 12)
         .text(metric2.label)
-        .attr('fill', '#64748b')
+        .attr('fill', '#2C3C4A')
         .style('font-size', '12px')
     }
   }, [data, metric1, metric2, currentChartType, barColors])
 
   return (
-    <Card className="p-4">
+    <Card className="p-4 bg-white border-brand-granite">
       {!hideControls && (
         <div className="flex justify-end mb-4">
           <div className="inline-flex rounded-md shadow-sm" role="group">
@@ -277,8 +277,8 @@ export function MetricsChart({
               type="button"
               onClick={() => setCurrentChartType('line')}
               className={`px-4 py-2 text-sm font-medium border rounded-l-lg ${currentChartType === 'line'
-                ? 'bg-blue-50 text-blue-700 border-blue-700'
-                : 'bg-white text-gray-900 border-gray-200 hover:bg-gray-100'
+                ? 'bg-brand-orange text-white border-brand-orange'
+                : 'bg-white text-brand-navy border-brand-granite hover:bg-brand-cream'
                 }`}
             >
               Line
@@ -287,8 +287,8 @@ export function MetricsChart({
               type="button"
               onClick={() => setCurrentChartType('bar')}
               className={`px-4 py-2 text-sm font-medium border rounded-r-lg ${currentChartType === 'bar'
-                ? 'bg-blue-50 text-blue-700 border-blue-700'
-                : 'bg-white text-gray-900 border-gray-200 hover:bg-gray-100'
+                ? 'bg-brand-orange text-white border-brand-orange'
+                : 'bg-white text-brand-navy border-brand-granite hover:bg-brand-cream'
                 }`}
             >
               Bar

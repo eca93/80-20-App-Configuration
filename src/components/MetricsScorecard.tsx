@@ -38,12 +38,12 @@ export function MetricsScorecard({ data, onMetricClick, selectedMetrics, metricO
         return (
           <Card
             key={key}
-            className={`p-4 cursor-pointer hover:bg-gray-50 transition-colors ${isSelected ? 'ring-2 ring-blue-500' : ''
+            className={`p-4 cursor-pointer hover:bg-brand-cream transition-colors bg-white border-brand-granite ${isSelected ? 'ring-2 ring-brand-orange shadow-lg' : ''
               }`}
             onClick={() => onMetricClick(key)}
           >
-            <div className="text-sm text-gray-500">{label}</div>
-            <div className="text-2xl font-semibold mt-1">
+            <div className="text-sm text-brand-graphite">{label}</div>
+            <div className="text-2xl font-semibold mt-1 text-brand-navy">
               {format(value)}
             </div>
           </Card>

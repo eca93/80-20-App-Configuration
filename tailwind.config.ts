@@ -54,6 +54,16 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			// Brand Colors
+  			brand: {
+  				orange: '#F95535', // Lane Orange
+  				navy: '#2C3C4A',
+  				graphite: '#3F494A',
+  				granite: '#606160',
+  				steel: '#57717C',
+  				cream: '#F9F7EE',
+  				ochre: '#EEB522'
   			}
   		}
   	}

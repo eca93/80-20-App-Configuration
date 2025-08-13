@@ -12,6 +12,7 @@ import { formatCurrency } from '@/lib/utils'
 import type { MetricKey, AdMetric, AllMetricKeys, DailyMetrics } from '@/lib/types'
 import type { SheetTab } from '@/lib/config'
 import { Button } from '@/components/ui/button'
+import MetricsScatter from '@/components/MetricsScatter'
 
 export function DashboardPage() {
     const { settings } = useSettings()
@@ -19,6 +20,7 @@ export function DashboardPage() {
     const metricOptions = getMetricOptions(activeTab)
     const [selectedMetrics, setSelectedMetrics] = useState<AllMetricKeys[]>(['cost', 'value'])
     const [chartType, setChartType] = useState<'line' | 'bar'>('line')
+    const [vizTab, setVizTab] = useState<'timeseries' | 'scatter'>('timeseries')
 
     const { data: tabsData = {} as Record<SheetTab, AdMetric[]>, error, isLoading } = useSWR(
         settings.sheetUrl,
@@ -64,7 +66,7 @@ export function DashboardPage() {
     }
 
     if (isLoading) {
-        return <div className="p-8 text-center">Loading...</div>
+        return <div className="p-8 text-center text-brand-navy">Loading...</div>
     }
 
     // Combine metric options with calculated metrics
@@ -79,7 +81,7 @@ export function DashboardPage() {
 
     return (
         <div className="container mx-auto px-4 py-12 mt-16">
-            <h1 className="text-3xl font-bold mb-12 text-gray-900">Google Ads Dashboard</h1>
+            <h1 className="text-3xl font-bold mb-12 text-brand-navy">Google Ads Dashboard</h1>
 
             <div className="mb-8">
                 <CampaignSelect
@@ -98,25 +100,48 @@ export function DashboardPage() {
                 />
             </div>
 
-            {/* Chart Container - Simplified to always show metrics */}
+            {/* Visualization Tabs */}
             <div className="bg-white rounded-xl shadow-sm border p-6 mt-8">
-                <h2 className="text-xl font-semibold mb-4 text-gray-900">Campaign Metrics</h2>
-                <MetricsChart
-                    data={dailyMetrics}
-                    metric1={{
-                        key: selectedMetrics[0],
-                        label: metricOptions[selectedMetrics[0]].label,
-                        color: '#1e40af',
-                        format: (v: number) => metricOptions[selectedMetrics[0]].format(v)
-                    }}
-                    metric2={{
-                        key: selectedMetrics[1],
-                        label: metricOptions[selectedMetrics[1]].label,
-                        color: '#ea580c',
-                        format: (v: number) => metricOptions[selectedMetrics[1]].format(v)
-                    }}
-                    chartType={chartType}
-                />
+                <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-xl font-semibold text-brand-navy">Campaign Visualizations</h2>
+                    <div className="inline-flex rounded-md shadow-sm" role="group">
+                        <button
+                            type="button"
+                            onClick={() => setVizTab('timeseries')}
+                            className={`px-4 py-2 text-sm font-medium border rounded-l-lg ${vizTab === 'timeseries' ? 'bg-brand-orange text-white border-brand-orange' : 'bg-white text-brand-navy border-brand-granite hover:bg-brand-cream'}`}
+                        >
+                            Time Series
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setVizTab('scatter')}
+                            className={`px-4 py-2 text-sm font-medium border rounded-r-lg ${vizTab === 'scatter' ? 'bg-brand-orange text-white border-brand-orange' : 'bg-white text-brand-navy border-brand-granite hover:bg-brand-cream'}`}
+                        >
+                            Efficiency Scatter
+                        </button>
+                    </div>
+                </div>
+
+                {vizTab === 'timeseries' ? (
+                    <MetricsChart
+                        data={dailyMetrics}
+                        metric1={{
+                            key: selectedMetrics[0],
+                            label: metricOptions[selectedMetrics[0]].label,
+                            color: '#1e40af',
+                            format: (v: number) => metricOptions[selectedMetrics[0]].format(v)
+                        }}
+                        metric2={{
+                            key: selectedMetrics[1],
+                            label: metricOptions[selectedMetrics[1]].label,
+                            color: '#ea580c',
+                            format: (v: number) => metricOptions[selectedMetrics[1]].format(v)
+                        }}
+                        chartType={chartType}
+                    />
+                ) : (
+                    <MetricsScatter data={dailyMetrics as any} />
+                )}
             </div>
         </div>
     )

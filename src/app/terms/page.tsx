@@ -86,7 +86,7 @@ export default function TermsPage() {
     }
 
     if (isDataLoading) {
-        return <div className="p-8 text-center">Loading...</div>
+        return <div className="p-8 text-center text-brand-navy">Loading...</div>
     }
 
     const handleSort = (field: SortField) => {
@@ -105,11 +105,11 @@ export default function TermsPage() {
         <Button
             variant="ghost"
             onClick={() => handleSort(field)}
-            className="h-8 px-2 lg:px-3"
+            className="h-8 px-2 lg:px-3 text-brand-navy hover:text-brand-orange hover:bg-brand-cream"
         >
             {children}
             {sortField === field && (
-                <span className="ml-2">
+                <span className="ml-2 text-brand-orange">
                     {sortDirection === 'asc' ? '↑' : '↓'}
                 </span>
             )}
@@ -118,73 +118,73 @@ export default function TermsPage() {
 
     return (
         <div className="container mx-auto px-4 py-12 mt-16">
-            <h1 className="text-3xl font-bold mb-12 text-gray-900">Search Terms</h1>
+            <h1 className="text-3xl font-bold mb-12 text-brand-navy">Search Terms</h1>
 
-            <div className="rounded-md border">
+            <div className="rounded-md border border-brand-granite bg-white">
                 <Table>
                     <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[200px]">
+                        <TableRow className="bg-brand-cream">
+                            <TableHead className="w-[200px] text-brand-navy font-semibold">
                                 <SortButton field="searchTerm">Search Term</SortButton>
                             </TableHead>
-                            <TableHead>
+                            <TableHead className="text-brand-navy font-semibold">
                                 <SortButton field="keywordText">Keyword</SortButton>
                             </TableHead>
-                            <TableHead>
+                            <TableHead className="text-brand-navy font-semibold">
                                 <SortButton field="campaign">Campaign</SortButton>
                             </TableHead>
-                            <TableHead>
+                            <TableHead className="text-brand-navy font-semibold">
                                 <SortButton field="adGroup">Ad Group</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="impr">Impr</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="clicks">Clicks</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="cost">Cost</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="conv">Conv</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="value">Value</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="CTR">CTR</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="CPC">CPC</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="CvR">CvR</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="CPA">CPA</SortButton>
                             </TableHead>
-                            <TableHead className="text-right">
+                            <TableHead className="text-right text-brand-navy font-semibold">
                                 <SortButton field="ROAS">ROAS</SortButton>
                             </TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {paginatedTerms.map((term, i) => (
-                            <TableRow key={`${term.searchTerm}-${term.campaign}-${term.adGroup}-${i}-${term.keywordText}`}>
-                                <TableCell className="font-medium">{term.searchTerm}</TableCell>
-                                <TableCell>{term.keywordText || '-'}</TableCell>
-                                <TableCell>{term.campaign}</TableCell>
-                                <TableCell>{term.adGroup}</TableCell>
-                                <TableCell className="text-right">{formatNumber(term.impr)}</TableCell>
-                                <TableCell className="text-right">{formatNumber(term.clicks)}</TableCell>
-                                <TableCell className="text-right">{formatCurrency(term.cost, settings.currency)}</TableCell>
-                                <TableCell className="text-right">{formatNumber(term.conv)}</TableCell>
-                                <TableCell className="text-right">{formatCurrency(term.value, settings.currency)}</TableCell>
-                                <TableCell className="text-right">{formatPercent(term.CTR)}</TableCell>
-                                <TableCell className="text-right">{formatCurrency(term.CPC, settings.currency)}</TableCell>
-                                <TableCell className="text-right">{formatPercent(term.CvR)}</TableCell>
-                                <TableCell className="text-right">{formatCurrency(term.CPA, settings.currency)}</TableCell>
-                                <TableCell className="text-right">
+                            <TableRow key={`${term.searchTerm}-${term.campaign}-${term.adGroup}-${i}-${term.keywordText}`} className="hover:bg-brand-cream/50">
+                                <TableCell className="font-medium text-brand-navy">{term.searchTerm}</TableCell>
+                                <TableCell className="text-brand-graphite">{term.keywordText || '-'}</TableCell>
+                                <TableCell className="text-brand-graphite">{term.campaign}</TableCell>
+                                <TableCell className="text-brand-graphite">{term.adGroup}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatNumber(term.impr)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatNumber(term.clicks)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatCurrency(term.cost, settings.currency)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatNumber(term.conv)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatCurrency(term.value, settings.currency)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatPercent(term.CTR)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatCurrency(term.CPC, settings.currency)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatPercent(term.CvR)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">{formatCurrency(term.CPA, settings.currency)}</TableCell>
+                                <TableCell className="text-right text-brand-navy">
                                     {(term.ROAS && isFinite(term.ROAS)) ? `${term.ROAS.toFixed(2)}x` : '-'}
                                 </TableCell>
                             </TableRow>
@@ -194,7 +194,7 @@ export default function TermsPage() {
             </div>
             {/* Pagination Controls */}
             <div className="flex items-center justify-between mt-4">
-                <div className="text-sm text-gray-700">
+                <div className="text-sm text-brand-graphite">
                     Page {currentPage} of {totalPages}
                 </div>
                 <Pagination>
@@ -206,7 +206,7 @@ export default function TermsPage() {
                                     e.preventDefault();
                                     setCurrentPage(prev => Math.max(prev - 1, 1));
                                 }}
-                                className={currentPage === 1 ? "pointer-events-none opacity-50" : undefined}
+                                className={currentPage === 1 ? "pointer-events-none opacity-50" : "text-brand-navy hover:text-brand-orange"}
                             />
                         </PaginationItem>
 
@@ -224,6 +224,7 @@ export default function TermsPage() {
                                             setCurrentPage(pageNumber as number);
                                         }}
                                         isActive={currentPage === pageNumber}
+                                        className={currentPage === pageNumber ? "bg-brand-orange text-white" : "text-brand-navy hover:text-brand-orange"}
                                     >
                                         {pageNumber}
                                     </PaginationLink>
@@ -238,7 +239,7 @@ export default function TermsPage() {
                                     e.preventDefault();
                                     setCurrentPage(prev => Math.min(prev + 1, totalPages));
                                 }}
-                                className={currentPage === totalPages ? "pointer-events-none opacity-50" : undefined}
+                                className={currentPage === totalPages ? "pointer-events-none opacity-50" : "text-brand-navy hover:text-brand-orange"}
                             />
                         </PaginationItem>
                     </PaginationContent>

@@ -39,16 +39,16 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-[1400px] mx-auto px-4 py-12 mt-16">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-12">Settings</h1>
+          <h1 className="text-3xl font-bold text-brand-navy mb-12">Settings</h1>
 
-          <Card className="p-6 bg-white shadow-sm">
+          <Card className="p-6 bg-white shadow-sm border-brand-granite">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="sheetUrl" className="text-base">
+                  <Label htmlFor="sheetUrl" className="text-base text-brand-navy">
                     Google Web App URL
                   </Label>
                   <div className="mt-2">
@@ -57,16 +57,16 @@ export default function SettingsPage() {
                       value={settings.sheetUrl}
                       onChange={(e) => setSheetUrl(e.target.value)}
                       placeholder="Enter your Google Sheet URL"
-                      className="h-12"
+                      className="h-12 border-brand-granite focus:ring-brand-orange focus:border-brand-orange"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label className="text-base">Currency</Label>
+                  <Label className="text-base text-brand-navy">Currency</Label>
                   <div className="mt-2">
                     <Select value={settings.currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="h-12 w-[200px]">
+                      <SelectTrigger className="h-12 w-[200px] border-brand-granite focus:ring-brand-orange focus:border-brand-orange">
                         <SelectValue placeholder="Select currency" />
                       </SelectTrigger>
                       <SelectContent>
@@ -82,7 +82,7 @@ export default function SettingsPage() {
               </div>
 
               {error && (
-                <div className="text-sm text-red-500 bg-red-50 p-3 rounded-md">
+                <div className="text-sm text-red-500 bg-red-50 p-3 rounded-md border border-red-200">
                   {error}
                 </div>
               )}
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                 <Button
                   onClick={handleUpdate}
                   disabled={isLoading || isContextLoading || !settings.sheetUrl}
-                  className="w-full h-12 text-lg bg-[#ea580c] hover:bg-[#c2410c] text-white"
+                  className="w-full h-12 text-lg bg-brand-orange hover:bg-brand-orange/90 text-white"
                 >
                   {isLoading || isContextLoading ? (
                     'Updating...'
